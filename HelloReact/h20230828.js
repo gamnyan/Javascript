@@ -691,8 +691,14 @@ const log = userLogs("grandpa");
 log("hello");
 */
 
-const countDown = (value, fn) => {
+const countDown = (value, fn, delay=3000) => {
   fn(value);
-  return value > 0 ? countDown(value - 1, fn) : value;
+  return value > 0 ? setTimeout(() => (countDown(value - 1, fn)), delay) : value;
 };
-countDown(10, (value) => console.log(value));
+countDown(10, (value) => console.log("느리게: "+value));
+
+const countDown1 = (value, fn, delay=1000) => {
+  fn(value);
+  return value > 0 ? setTimeout(() => (countDown(value - 1, fn)), delay) : value;
+};
+countDown1(10, (value) => console.log("빠르게: "+value));
