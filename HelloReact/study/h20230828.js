@@ -689,7 +689,6 @@ const userLogs = (userName) => (message) =>
 
 const log = userLogs("grandpa");
 log("hello");
-*/
 
 const countDown = (value, fn, delay=3000) => {
   fn(value);
@@ -702,3 +701,239 @@ const countDown1 = (value, fn, delay=1000) => {
   return value > 0 ? setTimeout(() => (countDown(value - 1, fn)), delay) : value;
 };
 countDown1(10, (value) => console.log("빠르게: "+value));
+
+const template = "HH:mm:ss tt";
+const d = new Date();
+const clockTime = template
+  .replace("HH", d.getHours())
+  .replace("mm", d.getMinutes())
+  .replace("ss", d.getSeconds())
+  .replace("tt", d.getHours >= 12 ? "PM" : "AM");
+
+console.log(clockTime);
+
+// const both = (date) => appendAMPM(civilianHours(date)); // 이것보단 밑에 있는 게 낫다
+// const both = compose(civilianHours, appendAMPM);
+// both(new Date());
+const compose = (...fns) => fns.reduce((composed, f) => f(composed), arg);
+
+const logClockTime = () => {
+
+    // 현재 시각을 상용시로 표현하는 문자열을 얻는다.
+    var time = getClockTime();
+
+    // 콘솔을 지우고 시간을 로그에 남긴다.
+    console.clear();
+    console.log(time);
+}
+
+const getClockTime = () => {
+
+    // 현재 시각을 얻는다.
+    var date = new Date();
+    var time = "";
+
+    // 시각을 직렬화한다.
+    var time = {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+        ampm: "AM"
+    }
+
+    // 상용시로 변환한다.
+    if (time.hours == 12) {
+        time.ampm = "PM";
+    } else if (time.hours > 12) {
+        time.ampm = "PM";
+        time.hours -= 12;
+    }
+
+    // 시간을 2글자로 만들기 위해 앞에 0을 붙인다.
+    if (time.hours < 10) {
+        time.hours = "0" + time.hours;
+    }
+
+    // 분을 2글자로 만들기 위해 앞에 0을 붙인다.
+    if (time.minutes < 10) {
+        time.minutes = "0" + time.minutes;
+    }
+
+    // 초를 2글자로 만들기 위해 앞에 0을 붙인다.
+    if (time.seconds < 10) {
+        time.seconds = "0" + time.seconds;
+    }
+
+    // "hh:mm:ss tt" 형식의 문자열을 만든다.
+    return time.hours + ":"
+        + time.minutes + ":"
+        + time.seconds + " "
+        + time.ampm;
+
+}
+
+// 매 초 시간을 로그에 남긴다.
+setInterval(logClockTime, 1000);
+*/
+
+// const oneSecond = () => 1000;
+// const getCurrentTime = () => new Date();
+// // const clear = () => console.clear();
+// const clear = () => document.body.innerHTML = "";
+// // const log = (message) => console.log(message);
+// const log = (message) => {
+//   const paragraph = document.createElement("p");
+//   paragraph.textContent = message;
+//   document.body.appendChild(paragraph);
+// }
+
+// const abstractClockTime = (date) => ({
+//   hours: date.getHours(),
+//   minutes: date.getMinutes(),
+//   seconds: date.getSeconds(),
+// });
+
+// const civilianHours = (clockTime) => ({
+//   ...clockTime,
+//   hours: clockTime.hours > 12 ? clockTime.hours - 12 : clockTime.hours,
+// });
+
+// const appendAMPM = (clockTime) => ({
+//   ...clockTime,
+//   ampm: clockTime.hours >= 12 ? "PM" : "AM",
+// });
+
+// const display = (target) => (time) => target(time);
+
+// const formatClock = (format) => (time) =>
+//   format
+//     .replace("hh", time.hours)
+//     .replace("mm", time.minutes)
+//     .replace("ss", time.seconds)
+//     .replace("tt", time.ampm);
+
+// const prependZero = (key) => (clockTime) => ({
+//   ...clockTime,
+//   [key]: clockTime[key] < 10 ? "0" + clockTime[key] : clockTime[key],
+// });
+
+// const compose =
+//   (...fns) =>
+//   (arg) =>
+//     fns.reduce((composed, f) => f(composed), arg);
+
+// const convertToCivilianTime = (clockTime) =>
+//   compose(appendAMPM, civilianHours)(clockTime);
+
+// const doubleDigits = (civilianTime) =>
+//   compose(
+//     prependZero("hours"),
+//     prependZero("minutes"),
+//     prependZero("seconds")
+//   )(civilianTime);
+
+// const startTicking = () =>
+//   setInterval(
+//     compose(
+//       clear,
+//       getCurrentTime,
+//       abstractClockTime,
+//       convertToCivilianTime,
+//       doubleDigits,
+//       formatClock("hh:mm:ss tt"),
+//       display(log)
+//     ),
+//     oneSecond()
+//   );
+
+// startTicking();
+
+const oneSecond = () => 1000;
+const getCurrentTime = () => new Date();
+const clear = () => (document.getElementById("log").textContent = "");
+const log = (message) => {
+  const paragraph = document.createElement("p");
+  paragraph.textContent = message;
+  document.getElementById("log").appendChild(paragraph);
+};
+
+const abstractClockTime = (date) => ({
+  hours: date.getHours(),
+  minutes: date.getMinutes(),
+  seconds: date.getSeconds(),
+});
+
+const civilianHours = (clockTime) => ({
+  ...clockTime,
+  hours: clockTime.hours > 12 ? clockTime.hours - 12 : clockTime.hours,
+});
+
+const appendAMPM = (clockTime) => ({
+  ...clockTime,
+  ampm: clockTime.hours >= 12 ? "PM" : "AM",
+});
+
+const display = (target) => (time) => target(time);
+
+const formatClock = (format) => (time) =>
+  format
+    .replace("hh", time.hours)
+    .replace("mm", time.minutes)
+    .replace("ss", time.seconds)
+    .replace("tt", time.ampm);
+
+const prependZero = (key) => (clockTime) => ({
+  ...clockTime,
+  [key]: clockTime[key] < 10 ? "0" + clockTime[key] : clockTime[key],
+});
+
+const compose =
+  (...fns) =>
+  (arg) =>
+    fns.reduce((composed, f) => f(composed), arg);
+
+const convertToCivilianTime = (clockTime) =>
+  compose(appendAMPM, civilianHours)(clockTime);
+
+const doubleDigits = (civilianTime) =>
+  compose(
+    prependZero("hours"),
+    prependZero("minutes"),
+    prependZero("seconds")
+  )(civilianTime);
+
+// // 동적으로 #log 요소 생성
+// const createLogElement = () => {
+//   const logElement = document.createElement("div");
+//   logElement.id = "log";
+//   document.body.appendChild(logElement);
+// };
+
+// 시작 시간 로깅 시작
+const startTicking = () => {
+  // createLogElement(); // #log 요소 생성
+  const logElement = document.createElement("div");
+  logElement.id = "log";
+  logElement.style.position = "fixed";
+  logElement.style.top = "0";
+  logElement.style.right = "0";
+  logElement.style.padding = "20px";
+  logElement.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+  logElement.style.color = "white";
+  logElement.style.fontFamily = "Arial, sans-serif";
+  document.body.appendChild(logElement);
+  setInterval(
+    compose(
+      clear,
+      getCurrentTime,
+      abstractClockTime,
+      convertToCivilianTime,
+      doubleDigits,
+      formatClock("hh:mm:ss tt"),
+      display(log)
+    ),
+    oneSecond()
+  );
+};
+
+startTicking();

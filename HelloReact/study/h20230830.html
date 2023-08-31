@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+        padding: 0;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 22px;
+      }
+
+      h2 {
+        margin-top: 0;
+        font-size: 20px;
+      }
+
+      h3 {
+        margin-top: 0;
+        font-size: 18px;
+      }
+
+      h4 {
+        margin-top: 0;
+        font-size: 16px;
+      }
+
+      h5 {
+        margin-top: 0;
+        font-size: 14px;
+      }
+
+      h6 {
+        margin-top: 0;
+        font-size: 12px;
+      }
+
+      code {
+        font-size: 1.2em;
+      }
+
+      ul {
+        padding-inline-start: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+        padding: 0;
+      }
+
+      .square {
+        background: #fff;
+        border: 1px solid #999;
+        float: left;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 34px;
+        height: 34px;
+        margin-right: -1px;
+        margin-top: -1px;
+        padding: 0;
+        text-align: center;
+        width: 34px;
+      }
+
+      .board-row:after {
+        clear: both;
+        content: "";
+        display: table;
+      }
+
+      .status {
+        margin-bottom: 10px;
+      }
+      .game {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .game-info {
+        margin-left: 20px;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <title>JSX를 사용한 리액트 예제</title>
+  </head>
+  <body>
+    <div id="react-container"></div>
+
+    <!-- React 라이브러리와 ReactDOM 라이브러리 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      function Square({ value, onSquareClick }) {
+        function handleClick() {
+          setValue("X");
+        }
+        return (
+          <button className="square" onClick={onSquareClick}>
+            {value}
+          </button>
+        );
+      }
+      function Board() {
+        const [squares, setSquares] = React.useState(Array(9).fill(null));
+
+        function handleClick(value) {
+          console.log(value);
+          //   squares[value] = "X";
+          const nextSquares = [...squares];
+          nextSquares[value] = "X";
+          setSquares(nextSquares);
+        }
+        return (
+          <>
+            <div className="board-row">
+              <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+              <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+              <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+            </div>
+            <div className="board-row">
+              <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+              <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+              <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+            </div>
+            <div className="board-row">
+              <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+              <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+              <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+            </div>
+          </>
+        );
+      }
+
+      ReactDOM.render(<Board />, document.getElementById("react-container"));
+    </script>
+  </body>
+</html>
