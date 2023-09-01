@@ -1,0 +1,24 @@
+html, body, div#react-container {
+  min-height: 100%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(229, 229, 229) 100%);
+}
+body div.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+input {
+  outline: none;
+}/*# sourceMappingURL=APP.css.map */
