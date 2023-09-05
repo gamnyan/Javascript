@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 // import "./App.css";
 // import { CounterList } from "./components/CounterList.js";
-import { Vending } from "./components/Vending";
+import { Vending } from "./components/vending/Vending";
 import "./stylesheets/style.css";
 
 const App = () => <Vending />;
