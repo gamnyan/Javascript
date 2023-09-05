@@ -1,9 +1,10 @@
 // import logo from './logo.svg';
 // import "./App.css";
-import { MovingDot } from "./components/MovingDot.js";
+// import { CounterList } from "./components/CounterList.js";
+import { Vending } from "./components/Vending";
 import "./stylesheets/style.css";
 
-const App = () => <MovingDot />;
+const App = () => <Vending />;
 
 // function App() {
 //    const handleClick = () => alert("Click me");

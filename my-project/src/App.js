@@ -1,6 +1,6 @@
-import { Seolmun } from "./components/Seolmun";
+import { StarRating } from "./components/StarRating";
 import "./App.css";
 
-const App = () => <Seolmun />;
+const App = () => <StarRating />;
 
 export default App;

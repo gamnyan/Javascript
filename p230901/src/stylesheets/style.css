@@ -16,8 +16,8 @@
   color: chocolate;
 }
 * button {
-  width: 70px;
-  height: 40px;
+  width: auto;
+  height: auto;
   background-color: brown;
   color: wheat;
   margin-top: auto;
