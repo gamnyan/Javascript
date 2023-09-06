@@ -1,11 +1,11 @@
-export const MessageDisplay = ({ insertCoinMessage, buyDrinkMessage }) => {
-    return (
-       <div>
-          <p>{insertCoinMessage}</p>
-          <hr />
-          <p>{buyDrinkMessage}</p>
-       </div>
-    );
- };
- 
- 
+export const MessageDisplay = ({ insertCoinMessage, buyDrinkMessage, emptyMoneyMessage }) => {
+   return (
+      <>
+         <p>{emptyMoneyMessage}</p>
+         <hr className="flair" />
+         <p>{insertCoinMessage}</p>
+         <hr className="flair" />
+         <p>{buyDrinkMessage}</p>
+      </>
+   );
+};

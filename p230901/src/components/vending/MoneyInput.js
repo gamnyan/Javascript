@@ -1,14 +1,12 @@
 const coins = [100, 500, 1000];
 export const MoneyInput = ({ money, onInsertCoin }) => {
-    return (
-       <div>
-          내 지갑: <input value={money} readOnly />
-          <br />
-          {coins.map((coin, i) => (
-             <button key={i} onClick={() => onInsertCoin(coin)}>
-                {coin}
-             </button>
-          ))}
-       </div>
-    );
- };
+   return (
+      <>
+         {coins.map((coin, i) => (
+            <button className={money >= coin ? "btn-1" : "btn-2"} key={i} onClick={() => onInsertCoin(coin)}>
+               {coin}
+            </button>
+         ))}
+      </>
+   );
+};

@@ -1,10 +1,10 @@
 // import logo from './logo.svg';
 // import "./App.css";
-// import { CounterList } from "./components/CounterList.js";
-import { Vending } from "./components/vending/Vending";
+// import { Vending } from "./components/vending/Vending";
+import { Calculator } from "./components/Calculator";
 import "./stylesheets/style.css";
 
-const App = () => <Vending />;
+const App = () => <Calculator />;
 
 // function App() {
 //    const handleClick = () => alert("Click me");
