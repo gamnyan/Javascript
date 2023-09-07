@@ -1,14 +1,31 @@
 // import logo from './logo.svg';
 // import "./App.css";
-// import { Vending } from "./components/vending/Vending";
-import { Calculator } from "./components/Calculator";
+// import { Counter2 } from "./components/Counter2";
+import { TaskApp } from "./scalingUpWithReducerAndContext/TaskApp";
 import "./stylesheets/style.css";
 
-const App = () => <Calculator />;
+export default function App() {
+   return <TaskApp />;
+}
 
-// function App() {
-//    const handleClick = () => alert("Click me");
-//    return <button onClick={handleClick}>Click me</button>;
-// }
 App.displayName = App;
-export default App;
+
+// export default function App() {
+//    const [isFancy, setIsFancy] = useState(false);
+//    return (
+//       <div>
+//          {isFancy ? <Counter2 isFancy={true} /> : <Counter2 isFancy={false} />}
+//          {isFancy ? <Counter2 isFancy={true} /> : <Counter2 isFancy={false} />}
+//          <label>
+//             <input
+//                type="checkbox"
+//                checked={isFancy}
+//                onChange={e => {
+//                   setIsFancy(e.target.checked);
+//                }}
+//             />
+//             Use fancy styling
+//          </label>
+//       </div>
+//    );
+// }
